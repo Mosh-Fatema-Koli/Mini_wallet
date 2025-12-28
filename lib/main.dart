@@ -2,12 +2,13 @@ import 'package:boilerplate_of_cubit/view/Splash/SplashPage.dart';
 import 'package:flutter/material.dart';
 import 'package:boilerplate_of_cubit/library.dart';
 import 'package:flutter/services.dart';
-
-import 'data/repositories/theme_change/theme_change_repository.dart';
-
+import 'core/di.dart' as di;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  // Initialize DI
+  await di.init();
 
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
     statusBarColor: Colors.transparent,
@@ -15,12 +16,11 @@ void main() async {
 
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
 
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  MyApp({super.key});
-  final themeRepository = ThemeRepository();
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -30,14 +30,11 @@ class MyApp extends StatelessWidget {
       splitScreenMode: true,
       builder: (_, __) {
         return MaterialApp(
-          home: SplashPage(),
-          title: 'Tasks',
+          home:  SplashPage(),
+          title: 'MiniPay Wallet',
           debugShowCheckedModeBanner: false,
         );
       },
     );
   }
 }
-
-
-//stable

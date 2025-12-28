@@ -1,6 +1,7 @@
 import 'package:boilerplate_of_cubit/library.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../dashboard/dashboard.dart';
 import '../transitation/transitaion.dart';
 import 'cubit/login_cubit.dart';
 import 'cubit/login_state.dart';
@@ -14,8 +15,8 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
-  final emailController = TextEditingController();
-  final pinController = TextEditingController();
+  final emailController = TextEditingController(text: "test@gmail.com");
+  final pinController = TextEditingController(text: "123456");
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +29,7 @@ class _LoginPageState extends State<LoginPage> {
             if (state is LoginSuccess) {
               Navigator.pushReplacement(
                 context,
-                MaterialPageRoute(builder: (_) => TransactionPage()),
+                MaterialPageRoute(builder: (_) => DashboardPage()),
               );
             }
 

@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:boilerplate_of_cubit/library.dart';
 
+import '../dashboard/dashboard.dart';
 import '../transitation/transitaion.dart';
 import 'cubit/splash_state.dart';
 
@@ -25,7 +26,7 @@ class SplashPage extends StatelessWidget {
             if (state.needLogin) {
               _miscController.navigateTo(context: context,page:  LoginPage());
             } else if (state.success) {
-              _miscController.navigateTo(context: context, page: TransactionPage());
+              _miscController.navigateTo(context: context, page: DashboardPage());
             }
           },
           builder: (context, state) {

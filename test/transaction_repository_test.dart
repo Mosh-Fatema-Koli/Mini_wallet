@@ -1,7 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:boilerplate_of_cubit/data/data_sources/transitation_remote_datasource.dart';
-import 'package:boilerplate_of_cubit/data/model/transitation.dart';
+import 'package:boilerplate_of_cubit/data/model/transaction_model.dart';
 import 'package:boilerplate_of_cubit/data/repositories/transaction_repository_impl.dart';
 
 class MockRemoteDataSource extends Mock implements TransactionRemoteDataSource {}
@@ -11,8 +11,8 @@ void main() {
   late MockRemoteDataSource mockRemoteDataSource;
 
   final tTransactions = [
-    TransactionModel(id: 1, merchantName: 'Amazon', amount: 100, status: 'Pending', discription: 'Test 1'),
-    TransactionModel(id: 2, merchantName: 'eBay', amount: 50, status: 'Pending', discription: 'Test 2'),
+    TransactionModel(id: 1, merchantName: 'Amazon', amount: 100, status: 'Pending', description: 'Test 1', type: 'add'),
+    TransactionModel(id: 2, merchantName: 'eBay', amount: 50, status: 'Pending', description: 'Test 2', type: 'send'),
   ];
 
   setUp(() {

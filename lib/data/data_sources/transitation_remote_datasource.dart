@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:connectivity_plus/connectivity_plus.dart';
-import '../model/transitation.dart';
+import '../model/transaction_model.dart';
 
 abstract class TransactionRemoteDataSource {
   Future<List<TransactionModel>> fetchTransactions();
