@@ -172,12 +172,13 @@ class _TransactionPageState extends State<TransactionPage> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (_) => BlocProvider.value(
-                                    value: context.read<TransactionCubit>(),
-                                    child: TransitationDetailsPage(details: t,),
-                                  )
+                                  builder: (_) => TransitationDetailsPage(
+                                    details: t,
+                                    cubit: widget.cubit, // SAME INSTANCE
+                                  ),
                                 ),
                               );
+
 
                             },
                             child: ListTile(

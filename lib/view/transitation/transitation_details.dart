@@ -15,11 +15,13 @@ import 'cubit/transitation_state.dart';
 
 class TransitationDetailsPage extends StatelessWidget {
   final TransactionEntities details;
+  final TransactionCubit cubit;
   final misc = MiscController();
 
   TransitationDetailsPage({
     super.key,
     required this.details,
+    required this.cubit,
   });
 
   @override
@@ -29,11 +31,11 @@ class TransitationDetailsPage extends StatelessWidget {
         title: RFText(text: "Details of ${details.merchantName}"),
       ),
       body: BlocBuilder<TransactionCubit, TransactionState>(
+        bloc: cubit, // 🔥 use injected cubit
         builder: (context, state) {
           if (state is TransactionLoaded) {
-            final transaction = state.transactions.firstWhere(
-                  (e) => e.id == details.id,
-            );
+            final transaction =
+            state.transactions.firstWhere((e) => e.id == details.id);
 
             return _buildBody(context, transaction);
           }
@@ -43,6 +45,11 @@ class TransitationDetailsPage extends StatelessWidget {
       ),
     );
   }
+
+//   void _updateStatus(BuildContext context, String status) {
+//     cubit.updateTransactionStatus(details.id, status);
+//   }
+// }
 
   Widget _buildBody(BuildContext context, TransactionEntities transaction) {
     return Padding(
@@ -151,7 +158,7 @@ class TransitationDetailsPage extends StatelessWidget {
               if (_pinController.text == pin) {
                 Navigator.of(context).pop(); // close PIN dialog
                 // Update status via cubit
-                context.read<TransactionCubit>().updateTransactionStatus(details.id, status);
+                cubit.updateTransactionStatus(details.id, status);
                 // details.status = status; // locally update UI
               } else {
                 ScaffoldMessenger.of(context).showSnackBar(

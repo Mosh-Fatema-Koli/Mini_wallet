@@ -147,13 +147,16 @@ class DashboardPage extends StatelessWidget {
                     children: [
                       const Text("Transactions", style: TextStyle(fontSize: 18)),
                       GestureDetector(
-                        onTap: () {
-                          Navigator.push(
+                        onTap: () async {
+                          await Navigator.push(
                             context,
                             MaterialPageRoute(
                               builder: (_) => TransactionPage(cubit: cubit),
                             ),
                           );
+
+// 🔥 Refresh after coming back
+                          cubit.loadWallet();
                         },
                         child: const Text("View all", style: TextStyle(fontSize: 16)),
                       ),
